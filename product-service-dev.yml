@@ -13,8 +13,14 @@ spring:
     hibernate:
       ddl-auto: update    # dev convenience
     show-sql: true        # print SQL in dev
-
- 
+  kafka:
+    bootstrap-servers: localhost:9092  # Your Kafka broker
+    consumer:
+      group-id: my-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+         spring.json.trusted.packages: "*"  # To trust all packages for JSON deserialization
 management:
   endpoints:
        web:
